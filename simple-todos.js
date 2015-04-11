@@ -1,4 +1,4 @@
- tasks = new SQLCollection('tasks');
+tasks = new SQLCollection('tasks');
 
 if (Meteor.isClient) {
   // TODO: Move the table definition into SQLCollection
@@ -66,6 +66,16 @@ if (Meteor.isServer) {
   //Postgres.select('contacts',['address'],{},{ address: {$lm: 1}},{$fk: ['$loj', 'students']});
   //Postgres.update('students',{'class': 'senior', age: 30},{age: {$gt: 18}});
   //Postgres.remove('students', {age: {$gt: 20}});
+
+  //Postgres.createTable('students2', {
+  //  name: ['$string', '$notnull'],
+  //  age: ['$number'],
+  //  class: ['$string', {$default: '2015'}],
+  //  _id: ['$number', '$notnull', '$primary', '$unique']
+  //});
+  var tdb = new ActiveRecord();
+  tdb.find('students',1).fetch();
+  //testAR.find('testTable').fetch();
   var cursor = Postgres.getCursor();
 
   Meteor.publish('tasks', function () {
